@@ -1,0 +1,21 @@
+DFS
+A
+H
+9
+T A 1
+A B 1
+A C 1
+B C 1
+B D 2
+B E 3
+B F 4
+E H 3
+F H 1
+7
+A 2
+B 100
+C 1000
+D 50
+T 6
+E 50
+H 2

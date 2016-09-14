@@ -1,0 +1,16 @@
+DFS
+A
+D
+6
+A B 2
+B C 1
+B D 2
+C E 2
+C D 1
+E D 3
+5
+A 2
+B 100
+C 1000
+D 50
+E 50

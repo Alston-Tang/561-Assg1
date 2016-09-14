@@ -1,0 +1,26 @@
+A*
+A
+H
+12
+A B 2
+A C 3
+A D 4
+D E 1
+D F 2
+E G 1
+E H 2
+G H 3
+G M 2
+M H 4
+H F 5
+F H 3
+9
+A 2
+B 10
+C 10
+D 50
+F 100
+G 6
+E 50
+H 2
+M 1000

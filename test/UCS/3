@@ -1,0 +1,24 @@
+UCS
+A
+M
+12
+A B 2
+A C 3
+A D 4
+D E 1
+D F 2
+E G 1
+E H 2
+G H 3
+G M 2
+M H 4
+H F 5
+F H 3
+7
+A 2
+B 100
+C 1000
+D 50
+G 6
+E 50
+H 2
