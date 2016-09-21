@@ -157,11 +157,12 @@ stack<path>* aStar(routeIndex ori, routeIndex dest, Map &m) {
     priority_queue<aStarNode, vector<aStarNode>, greater<aStarNode>> q;
     stack<path> *rv = new stack<path>();
     aStarNode node = aStarNode(ori, ori, m.querySunday(ori), 0, count++);
+    int *curMin = new int[m.size()];
     bool *visited = new bool[m.size()];
     routeIndex *pre = new routeIndex[m.size()];
     int *dis = new int[m.size()];
 
-    fill(visited, visited + sizeof(bool) * m.size(), 0);
+    fill(visited, visited + m.size(), 0);
 
     q.push(node);
 
@@ -170,6 +171,7 @@ stack<path>* aStar(routeIndex ori, routeIndex dest, Map &m) {
         q.pop();
         if (visited[node.ind]) continue;
         visited[node.ind] = true;
+        curMin[node.ind] = node.estDis;
         pre[node.ind] = node.prev;
         dis[node.ind] = node.oriDis;
         if (node.ind == dest) {
@@ -177,9 +179,13 @@ stack<path>* aStar(routeIndex ori, routeIndex dest, Map &m) {
         }
         auto range = m.queryAllDistance(node.ind);
         for (auto it = range.first; it != range.second; it++) {
-            int ind = it->first;
+            routeIndex ind = it->first;
+            int oriDis = node.oriDis + it->second;
             if (!visited[ind]) {
-                int oriDis = node.oriDis + it->second;
+                q.push(aStarNode(ind, node.ind, oriDis + m.querySunday(ind), oriDis, count++));
+            } else if(oriDis < curMin[ind]){
+                visited[ind] = false;
+                curMin[ind] = oriDis;
                 q.push(aStarNode(ind, node.ind, oriDis + m.querySunday(ind), oriDis, count++));
             }
         }
@@ -213,7 +219,7 @@ stack<path>* ucs(routeIndex ori, routeIndex dest, Map &m) {
     routeIndex *pre = new routeIndex[m.size()];
     int *dis = new int[m.size()];
 
-    fill(visited, visited + sizeof(bool) * m.size(), 0);
+    fill(visited, visited + m.size(), 0);
 
     q.push(node);
 
@@ -253,7 +259,7 @@ stack<path>* bfs(routeIndex ori, routeIndex dest, Map &m) {
     bool *visited = new bool[m.size()];
     routeIndex *pre = new routeIndex[m.size()];
 
-    fill(visited, visited + sizeof(bool) * m.size(), 0);
+    fill(visited, visited + m.size(), 0);
 
     pre[ori] = ori;
     visited[ori] = true;
@@ -326,7 +332,7 @@ void printIndexStackDistance(stack<path> *s, Map &m, ofstream *out) {
         s->pop();
     }
 }
-
+/*
 void test() {
     const int testRange = 7;
     const int testStart = 1;
@@ -385,7 +391,7 @@ void test() {
         in.close();
     }
 }
-
+*/
 
 int main() {
     ifstream in;
