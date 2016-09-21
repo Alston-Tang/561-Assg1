@@ -168,7 +168,6 @@ stack<path>* aStar(routeIndex ori, routeIndex dest, Map &m) {
 
     while (true) {
         node = q.top();
-        string a = "17";
         q.pop();
         if (visited[node.ind]) continue;
         visited[node.ind] = true;
